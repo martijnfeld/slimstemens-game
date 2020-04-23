@@ -1,1 +1,5 @@
-@import "~bulma/sass/utilities/_all";
+$body-bg: red;
+$body-color: #fff;
+
+@import '~bootstrap';
+@import '~bootstrap-vue';
