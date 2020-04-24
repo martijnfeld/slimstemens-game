@@ -1,5 +1,15 @@
 $body-bg: red;
 $body-color: #fff;
-
+@import url("https://db.onlinewebfonts.com/c/c681726a84f5b42184ab02b38767d640?family=URWTopicW01-Bold");
+$font-family-sans-serif: "URWTopicW01-Bold";
 @import '~bootstrap';
 @import '~bootstrap-vue';
+
+
+html, body, #app {
+    height: 100%;
+}
+#app > .container,
+#app > .container > div {
+    min-height: 100%;
+}

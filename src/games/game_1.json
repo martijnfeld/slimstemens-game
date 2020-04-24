@@ -1,0 +1,63 @@
+{
+    "naam": "Standaardspel #1",
+    "omschrijving": "De basisvragen, niveau 15+",
+    "credits": {
+        "naam": "",
+        "contact": "",
+        "opmerking": ""
+    },
+    "speldata": {
+        "ronde_1": {
+            "vragen": [
+                {
+                    "vraag": "Hoe hoe een banaan",
+                    "antwoord": "Fruit"
+                },
+                {
+                    "vraag": "Hoe hoe een wortel",
+                    "antwoord": "Groente"
+                },
+                {
+                    "vraag": "v3",
+                    "antwoord": "D"
+                },
+                {
+                    "vraag": "v4",
+                    "antwoord": "Ja"
+                },
+                {
+                    "vraag": "v5",
+                    "antwoord": "Fruit"
+                },
+                {
+                    "vraag": "v6",
+                    "antwoord": "Groente"
+                },
+                {
+                    "vraag": " v7",
+                    "antwoord": "D"
+                },
+                {
+                    "vraag": "Vraag 8",
+                    "antwoord": "Ja"
+                },
+                {
+                    "vraag": "Vraag 9",
+                    "antwoord": "Ja"
+                }
+            ]
+        },
+        "ronde_2": {
+            "vragen": []
+        },
+        "ronde_3": {
+            "vragen": []
+        },
+        "ronde_4": {
+            "vragen": []
+        },
+        "ronde_5": {
+            "vragen": []
+        }
+    }
+}
