@@ -5,6 +5,7 @@ $font-family-sans-serif: "URWTopicW01-Bold";
 @import '~bootstrap';
 @import '~bootstrap-vue';
 
+@import '_transitions';
 
 html, body, #app {
     height: 100%;
