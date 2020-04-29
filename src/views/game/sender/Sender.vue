@@ -1,21 +1,25 @@
 <template>
     <b-container style="height: 100%;">
-        <div v-if="!gestart" :key="'ifgestart'" class="text-center">
-            <h1>Game starten</h1>
+        <transition name="fade" mode="out-in">
+            <div v-if="!gestart" :key="'ifgestart1'" class="text-center">
+                <h1>Game starten</h1>
 
-            <ConnectBtn v-if="!presentationData.connection" />
-            
-            <div>
-                <SetSpelers v-model="spelersValue" />
-                <b-button :disabled="!spelersValue" @click="startGame()">Starten!</b-button>
+                <ConnectBtn v-if="!presentationData.connection" />
+                
+                <div>
+                    <SetSpelers v-model="spelersValue" />
+                    <b-button :disabled="!spelersValue" @click="startGame()">Starten!</b-button>
+                </div>
             </div>
-        </div>
-        <div v-else :key="'ifgestart'" class="d-flex flex-column py-2">
-            <h1 class="text-center mxb-4">Ronde {{ ronde }}</h1>
-            <component :is="'ronde'+ronde" @rondeKlaar="ronde++" :speldata="game.speldata['ronde_'+ronde]" class="my-auto" />
-            
-            <Spelers :spelers="spelers" class="mt-auto mb-2" />
-        </div>
+            <div v-else :key="'ifgestart2'" class="d-flex flex-column py-2">
+                <h1 class="text-center mxb-4">Ronde {{ ronde }}</h1>
+                <transition name="fade" mode="out-in">
+                    <component :is="'ronde'+ronde" @rondeKlaar="ronde++" :speldata="game.speldata['ronde_'+ronde]" class="my-auto" />
+                </transition>
+                
+                <Spelers :spelers="spelers" class="mt-auto mb-2" />
+            </div>
+        </transition>
     </b-container>
 </template>
 <script>
