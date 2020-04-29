@@ -50,6 +50,7 @@
         "ronde_2": {
             "vragen": [
                 {
+                    "onderwerp": "Mannen",
                     "introdutie": "Een kat is een huisdier",
                     "vraag": "Wat weet je van muizen?",
                     "antwoorden": [
@@ -57,6 +58,17 @@
                         "Ongedierte",
                         "Piepen",
                         "Achterhuis"
+                    ]
+                },
+                {
+                    "onderwerp":"Vrouwen",
+                    "introdutie": "Een poes is een huisdier",
+                    "vraag": "Wat weet je van haarballen?",
+                    "antwoorden": [
+                        "Haar",
+                        "Bal",
+                        "Nog iets",
+                        "Nog meer"
                     ]
                 }
             ]

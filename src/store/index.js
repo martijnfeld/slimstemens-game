@@ -9,7 +9,6 @@ const spelersModule = {
   },
   getters: {
     isActieveSpeler: (state, getters) => spelerId => {
-      console.log(state.actieveSpelerId, spelerId)
       return state.actieveSpelerId == spelerId
     },
     getSpeler: (state, getters) => (spelerId) => state.spelers.find(speler => speler.spelerId == spelerId),
@@ -22,7 +21,8 @@ const spelersModule = {
 
       return volgendeSpeler === undefined ? state.spelers[0] : volgendeSpeler;
     },
-    actieveSpeler: (state, getters) => getters.getSpeler(state.actieveSpelerId)
+    actieveSpeler: (state, getters) => getters.getSpeler(state.actieveSpelerId),
+    timerLoopt: (state, getters) => getters.actieveSpeler.timer !== null
   },
   mutations: {
     addSpeler: (state, speler) => {
@@ -47,7 +47,7 @@ const spelersModule = {
             spelerId: spelerId,
             naam: spelerNaam,
             tijd: 0,
-            interval: null
+            timer: null
         });
       });
     },
@@ -66,9 +66,11 @@ const spelersModule = {
     startTimer(context){
       let spelerId = context.state.actieveSpelerId
       let speler = context.getters.getSpeler(spelerId);
-      speler.timer = window.setInterval(() => {
-        speler.tijd--;
-      }, 1000);
+      if (!speler.timer){
+        speler.timer = window.setInterval(() => {
+          speler.tijd--;
+        }, 1000);
+      }
     }
   }
 }
