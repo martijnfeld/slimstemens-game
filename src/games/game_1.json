@@ -48,7 +48,18 @@
             ]
         },
         "ronde_2": {
-            "vragen": []
+            "vragen": [
+                {
+                    "introdutie": "Een kat is een huisdier",
+                    "vraag": "Wat weet je van muizen?",
+                    "antwoorden": [
+                        "Klein",
+                        "Ongedierte",
+                        "Piepen",
+                        "Achterhuis"
+                    ]
+                }
+            ]
         },
         "ronde_3": {
             "vragen": []

@@ -4,17 +4,34 @@
         <p>
             Wat weet je eigenlijk van....?
         </p>
-        <b-button :disabled="gestart" @click="starten()">Starten</b-button>
-        <h3>{{ gestart ? currentVraag : '' }}</h3>
-        <h4>{{ gestart ? currentAntwoord : '' }}</h4>
-        <div>
-            <b-button variant="warning" @click="geefAntwoord(false)" :disabled="!gestart || beantwoord" v-show="!beantwoord || laatsteAntwoordGoed == false">
-                <font-awesome-icon :icon="['fas', 'times']" size="lg" class="mr-2" /> Fout
+        <b-button :disabled="gestart" @click="starten()">Start ronde 2</b-button>
+        <h3>{{ gestart ? currentIntroductie : '' }}</h3>
+        <h4>{{ gestart ? currentVraag : '' }}</h4>
+        <div v-if="gestart">
+            <TimerToggle 
+                v-model="timerLoopt"
+                class="mb-4"
+                :speler="actieveSpeler"
+                @start="timerLoopt = true"
+                @pas="timerLoopt = false"
+            />
+
+            <b-button 
+                v-for="(antwoord, index) in currentAntwoorden" 
+                :key="'antwoord'+index"
+                :disabled="!timerLoopt || antwoordenGevondenDoor[index] > 0"
+                @click="setAntwoordGevonden(index)"
+                block
+            >
+                <font-awesome-icon :icon="['fas', 'check']" v-if="antwoordenGevondenDoor[index]" />
+                {{ antwoord }}
+                <span v-if="antwoordenGevondenDoor[index]">
+                    [{{ getSpeler(antwoordenGevondenDoor[index]).naam }}]
+                </span>
             </b-button>
-            <b-button variant="success" class="ml-2" @click="geefAntwoord(true)" :disabled="!gestart || beantwoord" v-show="!beantwoord || laatsteAntwoordGoed == true">
-                <font-awesome-icon :icon="['fas', 'check']" size="lg" class="mr-2" /> Goed
-            </b-button>
+            
         </div>
+        
         <div v-if="beantwoord" class="mt-4">
             <b-button variant="primary" @click="$emit('rondeKlaar')" v-if="isLaatsteVraag">
                 <font-awesome-icon :icon="['fas', 'arrow-right']" size="lg" class="mr-2" /> 
@@ -33,12 +50,13 @@
 </template>
 
 <script>
-import VragenTable from "../../components/ronde1/VragenTable";
+// import VragenTable from "../../components/ronde1/VragenTable";
+import TimerToggle from "../TimerToggle";
 import { mapGetters } from "vuex"
 
 export default {
     components: {
-        VragenTable
+        TimerToggle
     },
     props: {
         speldata: Object
@@ -49,19 +67,24 @@ export default {
             vragenStatus: {},
             beantwoord: false,
             laatsteAntwoordGoed: undefined,
-            vraagGestartDoor: null
+            vraagGestartDoor: null,
+            antwoordenGevondenDoor: {},
+            timerLoopt: false,
         }
     },
     computed: {
-       ...mapGetters('spelers', ['actieveSpeler', 'volgendeSpeler']),
+       ...mapGetters('spelers', ['actieveSpeler', 'volgendeSpeler', 'getSpeler']),
         vragen() {
             return this.speldata.vragen
         },
         currentVraag() {
             return this.currentVraagObj.vraag;
         },
-        currentAntwoord() {
-            return this.currentVraagObj.antwoord;
+        currentIntroductie() {
+            return this.currentVraagObj.introductie;
+        },
+        currentAntwoorden() {
+            return this.gestart ? this.currentVraagObj.antwoorden : undefined;
         },
         currentVraagObj() {
             return this.vragen[this.currentVraagNum - 1];
@@ -84,11 +107,9 @@ export default {
             this.$store.dispatch('spelers/volgendeSpeler')
             this.currentVraagNum = 1;
             this.vraagGestartDoor = this.actieveSpeler.spelerId;
+            this.resetGevonden();
         },
         geefAntwoord(goed) {
-
-
-
             this.beantwoord = true;
             if(goed && this.currentVraagPunten){
                 this.$store.dispatch('spelers/geefPuntenHuidigeSpeler', 10);
@@ -106,6 +127,29 @@ export default {
             this.vraagGestartDoor = this.actieveSpeler.spelerId;
 
             this.currentVraagNum++;
+            this.resetGevonden();
+        },
+        resetGevonden(){
+            let antwoordenGevondenDoor = {};
+            this.currentAntwoorden.forEach((antwoord, index) => {
+                antwoordenGevondenDoor[index] = null
+            });
+            this.$set(this, 'antwoordenGevondenDoor', antwoordenGevondenDoor);
+        },
+        setAntwoordGevonden(index){
+            this.antwoordenGevondenDoor[index] = this.actieveSpeler.spelerId;
+            let onbeantwoord = this.currentAntwoorden.find((antwoord, index) => {
+                return this.antwoordenGevondenDoor[index] === null
+            });
+            this.$store.dispatch('spelers/geefPuntenHuidigeSpeler', 10);
+
+            if(onbeantwoord){
+                // Er is een antwoord nog niet gevonden, niks veranderden
+            }
+            else{
+                // Stop de timer
+                this.timerLoopt = false
+            }
         }
     }
 }
