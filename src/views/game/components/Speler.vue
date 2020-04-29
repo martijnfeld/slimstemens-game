@@ -1,7 +1,7 @@
 <template>
     <div :class="{'speler': true, 'speler-actief': actief}">
         <div class="speler-naam">{{ speler.naam }}</div>
-        <div class="speler-tijd">{{ speler.tijd }}</div>
+        <div :class="{'speler-tijd': true,  'animation-bounce': bounce}">{{ speler.tijd }}</div>
     </div>
 </template>
 
@@ -13,12 +13,27 @@ export default {
             required: true
         },
     },
+    data(){
+        return {
+            bounce: false
+        }
+    },
     computed: {
         speler(){
             return this.$store.getters['spelers/getSpeler'](this.spelerId)
         },
         actief(){
             return this.$store.getters['spelers/isActieveSpeler'](this.spelerId)
+        }
+    },
+    watch: {
+        "speler.tijd": function(nieuw, oud) {
+            if(nieuw > oud){
+                this.bounce = true;
+                window.setTimeout(()=>{
+                    this.bounce = false;
+                }, 600);
+            }
         }
     }
 }
