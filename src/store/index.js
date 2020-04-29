@@ -46,13 +46,29 @@ const spelersModule = {
         context.commit('addSpeler', {
             spelerId: spelerId,
             naam: spelerNaam,
-            tijd: 0
+            tijd: 0,
+            interval: null
         });
       });
     },
     volgendeSpeler(context){
-      console.log(context.getters.volgendeSpeler.spelerId)
+      context.dispatch('stopTimer');
       context.commit('setActieveSpeler', context.getters.volgendeSpeler.spelerId)
+    },
+    stopTimer(context){
+      let spelerId = context.state.actieveSpelerId
+      let speler = context.getters.getSpeler(spelerId);
+      if(speler && speler.timer !== null){
+        window.clearInterval(speler.timer);
+        speler.timer = null;
+      }
+    },
+    startTimer(context){
+      let spelerId = context.state.actieveSpelerId
+      let speler = context.getters.getSpeler(spelerId);
+      speler.timer = window.setInterval(() => {
+        speler.tijd--;
+      }, 1000);
     }
   }
 }
