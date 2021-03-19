@@ -1,6 +1,16 @@
 $body-bg: red;
 $body-color: #fff;
-@import url("https://db.onlinewebfonts.com/c/c681726a84f5b42184ab02b38767d640?family=URWTopicW01-Bold");
+// @import url("https://db.onlinewebfonts.com/c/c681726a84f5b42184ab02b38767d640?family=URWTopicW01-Bold");
+@font-face {
+    font-family: 'URWTopicW01-Bold';
+    src: url('/font/URWTopicW01-Bold.woff2') format('woff2'),
+        url('/font/URWTopicW01-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+
 $font-family-sans-serif: "URWTopicW01-Bold";
 @import '~bootstrap';
 @import '~bootstrap-vue';
@@ -13,4 +23,32 @@ html, body, #app {
 #app > .container,
 #app > .container > div {
     min-height: 100%;
+}
+
+$groepen: (
+    0: $warning,
+    1: $success,
+    2: $info,
+);
+
+
+@each $groep, $kleur in $groepen {
+    .text-groep-#{$groep} {
+        color: $kleur;
+    }
+    
+    .table-mode-sender .groep-#{$groep} {
+        background-color: $kleur;
+        color: color-yiq($kleur);
+        transition: opacity 0.3s;
+        opacity: 1;
+        &.woord-gevonden {
+            font-style: italic;
+            opacity: 0.5;
+        }
+    }
+    .table-mode-receiver td.woord-gevonden.groep-#{$groep} {
+        background-color: $kleur;
+        color: color-yiq($kleur)
+    }
 }

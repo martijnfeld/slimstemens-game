@@ -16,7 +16,10 @@ export default {
     data() {
         return {
             numSpelers: 2,
-            spelers: {},
+            spelers: {
+                1: 'Speler 1',
+                2: 'Speler 2'
+            },
         }
     },
     computed: {
@@ -42,6 +45,7 @@ export default {
     watch: {
         spelers: {
             deep: true,
+            immediate:true,
             handler() {
                 this.$emit('input', this.spelersComputed)
             }

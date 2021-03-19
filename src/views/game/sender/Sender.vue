@@ -17,8 +17,18 @@
                     <component :is="'ronde'+ronde" @rondeKlaar="ronde++" :speldata="game.speldata['ronde_'+ronde]" class="my-auto" />
                 </transition>
                 
+                <b-form-radio-group id="btn-radios-2" v-model="ronde" :options="[
+                    {text: 1, value: 1},
+                    {text: 2, value: 2},
+                    {text: 3, value: 3},
+                    {text: 4, value: 4}
+                ]" buttons button-variant="outline-primary" size="lg" name="radio-btn-outline">
+
+                </b-form-radio-group>
                 <Spelers :spelers="spelers" class="mt-auto mb-2" />
             </div>
+            
+
         </transition>
     </b-container>
 </template>
@@ -29,6 +39,8 @@ import ConnectBtn from './ConnectBtn';
 import SetSpelers from './SetSpelers';
 import Ronde1 from './ronde1/Ronde1';
 import Ronde2 from './ronde2/Ronde2';
+import Ronde3 from './ronde3/Ronde3';
+import Ronde4 from './ronde4/Ronde4';
 import game from '@/games/game_1.json';
 import { mapActions, mapState } from 'vuex';
 
@@ -40,6 +52,8 @@ export default {
       
       Ronde1, 
       Ronde2, 
+      Ronde3, 
+      Ronde4, 
       
       Spelers 
     },

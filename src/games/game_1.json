@@ -74,10 +74,112 @@
             ]
         },
         "ronde_3": {
-            "vragen": []
+            "vragen": [
+                {
+                    "groepen": [
+                        {
+                            "sleutelwoord": "Kapper",
+                            "woorden": [
+                                "Haar",
+                                "Spiegel",
+                                "Kleurspoeling",
+                                "Schaar"
+                            ]
+                        },
+                        {
+                            "sleutelwoord": "Tong",
+                            "woorden": [
+                                "Op het puntje",
+                                "Mond",
+                                "Smaak",
+                                "Vis"
+                            ]
+                        },
+                        {
+                            "sleutelwoord": "Wales",
+                            "woorden": [
+                                "Cardif",
+                                "Gareth Bale",
+                                "Welsh",
+                                "Swansea"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "groepen": [
+                        {
+                            "sleutelwoord": "Vogel",
+                            "woorden": [
+                                "Patrijs",
+                                "Kip",
+                                "Ekster",
+                                "Merel"
+                            ]
+                        },
+                        {
+                            "sleutelwoord": "Fruit",
+                            "woorden": [
+                                "Banaan",
+                                "Kiwi",
+                                "Mandarijn",
+                                "Mand"
+                            ]
+                        },
+                        {
+                            "sleutelwoord": "Spanje",
+                            "woorden": [
+                                "Paella",
+                                "Mallorca",
+                                "Stieren",
+                                "Zuiden"
+                            ]
+                        }
+                    ]
+                }
+            ]
         },
         "ronde_4": {
-            "vragen": []
+            "vragen": [
+                {
+                    "thema": "Poesjes",
+                    "afbeeldingen": [
+                        {
+                            "woord": "Woord 1",
+                            "afbeeldingUrl": "http://placekitten.com/g/700/901"
+                        },
+                        {
+                            "woord": "Woord 2",
+                            "afbeeldingUrl": "http://placekitten.com/g/900/902"
+                        },
+                        {
+                            "woord": "Woord 3",
+                            "afbeeldingUrl": "http://placekitten.com/g/800/803"
+                        },
+                        {
+                            "woord": "Woord 4",
+                            "afbeeldingUrl": "http://placekitten.com/g/800/404"
+                        },
+                        {
+                            "woord": "Woord 5",
+                            "afbeeldingUrl": "http://placekitten.com/g/800/955"
+                        },
+                        {
+                            "woord": "Woord 6",
+                            "afbeeldingUrl": "http://placekitten.com/g/700/906"
+                        },
+                        {
+                            "woord": "Woord 7",
+                            "afbeeldingUrl": "http://placekitten.com/g/800/907"
+                        },
+                        {
+                            "woord": "Woord 8",
+                            "afbeeldingUrl": "http://placekitten.com/g/800/908"
+                        }
+
+                    ]
+                }
+            ]
         },
         "ronde_5": {
             "vragen": []
